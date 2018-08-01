@@ -1,0 +1,73 @@
+﻿/********************
+*公共标签样式
+********************/
+
+.flLeft {
+    float: left;
+}
+
+.flRight {
+    float: right;
+}
+
+
+/*********************
+*main 外边框自适应区域
+***********************/
+.main {
+    width: 100%;
+    min-width: 1100px;
+    box-sizing: border-box;
+    background-color: #FFF;
+    border-radius: 6px;
+    box-shadow: 0px 4px 6px 0px rgba(70, 95, 106,.25);
+}
+/**********************
+*内容区:
+**********************/
+.content {
+    /*width: 1080px;*/
+    margin: 0 auto;
+    height: 700px;
+    border: 1px solid #D0D6D9;
+}
+
+.content_left {
+    width: 120px;
+    height: 100%;
+    border-right: 1px solid #D0D6D9;
+}
+
+.content_right {
+    background-color: cadetblue;
+    /*注意使用时计算符号前后要空格*/
+    width: calc(100% - 135px);
+    height: 100%;
+    margin-left: 10px;
+    border: 1px solid #D0D6D9;
+}
+
+.btn_c {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #D0D6D9;
+    cursor: pointer;
+}
+
+    .btn_c:hover {
+        background-color: #1BBC9A;
+    }
+/**************************
+*footer底部区域 
+***************************/
+/********************
+*公共标签默认属性设置
+********************/
+body {
+    margin: 0;
+    font-size: 15px;
+    padding: 20px 20px 0 20px;
+    margin-bottom: 0 !important;
+    background-color: #f0f0f0;
+}

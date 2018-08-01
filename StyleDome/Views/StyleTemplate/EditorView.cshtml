@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新建公文</title>
+    <link href="~/Content/css/eweboffice.css" rel="stylesheet" />
+    <!--页面样式-->
+    <link href="~/Content/css/StyleTemplate/EditorView.css" rel="stylesheet" />
+    <!--Jquery文件-->
+    <script src="~/Content/js/lib/jquery/jquery.min.js"></script>
+    <script src="~/Content/js/eWebOffice.js"></script>
+    <!--当前页面的逻辑  -->
+    <script src="~/Content/js/StyleTemplate/EditorView.js"></script>
+
+</head>
+<body>
+    <!-- 主要区域 -->
+    <div class="main">
+        <!-- 主要区域 标题 -->
+        <div class="content">
+            <div class="content_left flLeft">
+                <div id="j_save" class="btn_c">保存</div>
+                <div id="j_taohong" class="btn_c">一键套红</div>
+                <div id="j_markKeep" class="btn_c">保留痕迹</div>
+                <div id="j_markKeepNo" class="btn_c">不保留痕迹</div>
+                <div id="j_markShow" class="btn_c">显示痕迹</div>
+                <div id="j_markShowNo" class="btn_c">不显示痕迹</div>
+                <div id="j_seal" class="btn_c">加盖电子签名</div>
+            </div>
+
+            <div class="content_right flRight">
+                <!--创建eWebOffice实例-->
+                <script type="text/javascript">
+                    eWebOfficeJS.Create("eWebOffice1", "100%", "100%");
+
+                </script>
+                <script type="text/javascript">
+                    document.getElementById('eWebOffice1').attachEvent("OnDocumentAfterOpen", function () {
+
+                        console.log("ondocumentafteropen1")
+                    })
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--footer  底部区域   -->
+
+</body>
+</html>

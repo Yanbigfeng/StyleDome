@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<!DOCTYPE>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <link rel="Stylesheet" type="text/css" href="css/eweboffice.css" />
+    <title>选择模板列表</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function DoClickOk(o_Form) {
+            var o_Arg = window.dialogArguments;			//获取父页面传来的对话框参数
+            o_Arg.TemplateID = o_Form.d_template.value;	//obj.模板ID = 表单.下拉框选中的模板
+            window.close();								//关闭模式窗口
+            return;
+        }
+        window.onload = function () {
+
+        }
+    </script>
+
+</head>
+<body>
+
+
+    <form name="form1">
+        <table cellspacing="5" align="center">
+            <tr>
+                <td>
+                    模版名称：
+                    <select id="select" name=d_template style='width:250px;'>
+                        @Html.Raw(ViewBag.options)
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type=button class="btn" value="  确定  " onclick="DoClickOk(this.form);">
+                    <input type=button class="btn" value="  取消  " onclick="window.close();">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

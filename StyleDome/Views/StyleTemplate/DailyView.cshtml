@@ -1,0 +1,288 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新建公文</title>
+    <!--EasyUI 样式-->
+    <link href="~/Content/css/lib/jquery-easyui/1.4.4/base/easyui.css" rel="stylesheet" />
+    <link href="~/Content/css/lib/jquery-easyui/1.4.4/skin-purple.css" rel="stylesheet" />
+    <!--页面样式-->
+    <link href="~/Content/css/StyleTemplate/DailyView.css" rel="stylesheet" />
+    <!--Jquery文件-->
+    <script src="~/Content/js/lib/jquery/jquery.min.js"></script>
+    <!--EasyUI js文件-->
+    <script src="~/Content/js/lib/jquery-easyui/1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Content/js/lib/jquery-easyui/1.4.4/jquery.easyui.plus.js"></script>
+    <script src="~/Content/js/lib/jquery-easyui/1.4.4/locale/easyui-lang-zh-CN.js"></script>
+    <!--当前页面的逻辑  -->
+
+
+</head>
+<body>
+    <!-- 主要区域 -->
+    <div class="main">
+        <!-- 主要区域 标题 -->
+        <div class="main-title">
+            主题
+        </div>
+        <div class="content">
+            <div class="content_title">
+                <div class="area_title flLeft fontBold">名称/文号:</div>
+                <input class="int widthInt " value="发文文号001" />
+            </div>
+
+            <!--附加区-->
+            <div class="area">
+                <div class="area_title flLeft fontBold">附加区:</div>
+
+                <div class="area_title_right flRight  fontBold">
+                    <!-- 新建按钮 -->
+                    <a id="j_newFile" class="card_title_btn margNo_left flLeft">
+                        新建附件
+                    </a>
+                    <script>
+                        //文件列表
+                        $(function () {
+
+                            radioIndex = 7;
+                            $("#j_newFile").on("click", function () {
+                                //验证
+                                var radioType = $("input[name='newFileRadio']:checked").val();
+                                if (radioType == undefined) {
+                                    return alert("请选择新建类型");
+                                }
+                                var newFileName = $("#j_newFileName").val();
+                                console.log(newFileName)
+                                if (newFileName.replace(/\s+/g, "") == "") {
+                                    return alert("请输入文件名");
+                                }
+                                if (radioType == "word") {
+                                    //window.location.href = "/StyleTemplate/EditorView";
+                                    window.open("/StyleTemplate/EditorView");
+                                    return;
+                                } else {
+
+
+                                }
+                                ////////////////////////////////////////////////////////////////////////
+                                //这里需要根据类型进行页面跳转并在编辑页面保存页面进行回调函数，
+                                //返回一个完整的文件名称执行下面的代码
+                                /////////////////////////////////////////
+
+                                var li = document.createElement("li");
+                                var img = document.createElement("img");
+                                img.src = VerType("创建的文件类型你.jpg");
+                                var div = document.createElement("div");
+                                div.textContent = "创建的文件类型你.jpg";
+                                var input = document.createElement("input");
+                                input.type = "radio";
+                                input.id = "radio" + radioIndex;
+                                input.name = "fileRadio";
+                                var label = document.createElement("label");
+                                label.setAttribute("for", input.id);
+                                li.appendChild(img);
+                                li.appendChild(div);
+                                li.appendChild(input);
+                                li.appendChild(label);
+                                $("#j_fileUl")[0].appendChild(li);
+                                radioIndex++;
+                            })
+                            //根据文件全称获取后缀判断类型
+                            function VerType(name) {
+                                var indexBegin = name.lastIndexOf(".");
+                                var indexEnd = name.length;
+                                var type = name.substring(indexBegin + 1, indexEnd);
+                                console.log(type);
+                                switch (type) {
+                                    case "jpg":
+                                        return "1.jpg";
+                                    case "word":
+                                        return "word.jpg";
+                                    case "excel":
+                                        return "excel.jpg";
+                                }
+                            }
+
+
+                        })
+                    </script>
+
+                    <!-- 上传按钮 -->
+                    <a id="j_upLoad" class="card_title_btn flLeft">
+
+                        上传本地附件
+                    </a>
+                    <input name="j_file" type="file" hidden>
+                    <!--上传文件-->
+                    <script>
+                        $(function () {
+                            //上传方法
+                            $("#j_upLoad").on("click", function () {
+                                console.log("点击了按钮")
+                                return $(this).next().trigger("click");
+                            })
+                            //上面点击后变化会触发
+                            $("input[name='j_file']").on("change", function () {
+                                var f = this.files[0];
+                                //这里我们判断下类型如果不是图片就返回 去掉就可以上传任意文件
+
+                                //判断大小
+                                var size = f.size;
+
+                                //获取地址
+                                var fileName = $("#j_fileName").val();
+                                var formFile = new FormData();
+                                formFile.append("file", f); //加入文件对象
+                                formFile.append("fileName", fileName); //加入文件对象
+                                //otherUtil.upload(formFile, this);
+                            });
+                        })
+
+                    </script>
+                </div>
+                <div class="area_card flRight">
+
+                    <div class="card_title padigLeft_15 ">
+                        <spa>新建文件:</spa>
+                        <input id="word" type="radio" name="newFileRadio" value="word" /><label for="word">word</label>
+                        <input id="excel" type="radio" name="newFileRadio" value="excel" /><label for="excel">excel</label>
+                        <span class="marginLeft_150">文件名：</span>
+                        <input id="j_newFileName" class="int" value="" />
+
+                    </div>
+                    <div class="card_content heiht286">
+                        <div class="btnList  padigRight_40">
+                            <!-- 操作按钮 -->
+                            <a class=" card_title_btn width50 flRight" onclick="">
+                                删除
+                            </a>
+                            <a class=" card_title_btn width50 flRight" onclick="">
+                                编辑
+                            </a>
+                            <a class=" card_title_btn width50 flRight" onclick="">
+                                阅读
+                            </a>
+                            <a class=" card_title_btn width50 flRight" onclick="">
+                                下载
+                            </a>
+                        </div>
+                        <div class="fileList">
+                            <ul id="j_fileUl" class="padigLeft_15">
+                                <li>
+                                    <img src="~/Content/img/icon_word.png" />
+                                    <div>党的进什么文得很受打击.jpg</div>
+                                    <input id="radio1" type="radio" name="fileRadio"><label for="radio1"></label>
+                                </li>
+                                <li>
+                                    <img src="~/Content/img/icon_word.png" />
+                                    <div>党的进什么文件但还是觉得很受打击.jpg</div>
+                                    <input id="radio2" type="radio" name="fileRadio"><label for="radio2"></label>
+                                </li>
+                                <li>
+                                    <img src="~/Content/img/icon_word.png" />
+                                    <div>党的进什么文件但还是觉得很受打击.jpg</div><input id="radio3" type="radio" name="fileRadio"><label for="radio3"></label>
+                                </li>
+                                <li>
+                                    <img src="~/Content/img/icon_word.png" />
+                                    <div>党的进什么文件但还是觉得很受打击.jpg</div><input id="radio4" type="radio" name="fileRadio"><label for="radio4"></label>
+                                </li>
+                                @*<li><img /><div>党的进什么文件但还是觉得很受打击.jpg</div><input id="radio7" type="radio" name="fileRadio"><label for="radio7"></label></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--分割线-->
+            <div class="line"></div>
+            <!--选择步骤人员区-->
+            <div class="area">
+                <div class="area_title flLeft fontBold">选择人员:</div>
+
+                <div class="area_card flRight">
+                    <div class="card_content padNo easyui-layout" data-options="fit:true" style="width:1080px;height:300px;">
+                        <div data-options="region:'center'">
+                            <!--列表-->
+                            <table id="j_dgTable"></table>
+                            <script>
+                                $(function () {
+                                    //变量参数
+                                    var selectRow = undefined;//选择的行
+                                    var peopleData = [];
+                                    //表格
+                                    var j_dgTable = $("#j_dgTable").datagrid({
+                                        iconCls: 'icon-save',
+                                        fit: true,  // 自动适应父容器大小
+                                        fitColumns: true, //自动收缩列的大小
+                                        rownumbers: true, //显示列号
+                                        nowrap: true,     //如果为true，则在同一行中显示数据
+                                        animate: false,
+                                        scrollbarSize: 0,
+                                        border: false,   //有边框
+                                        singleSelect: false,//多选
+                                        idField: 'id',  //标识字段
+                                        pagination: false,//数据表格控件底部显示分页工具栏
+                                        pageSize: 15,
+                                        pageList: [5, 10, 15, 20, 25, 30, 50, 100],
+                                        url: '/StyleTemplate/GetData',
+                                        frozenColumns: [[
+                                            { title: '人员编号', field: 'id', sortable: true, align: 'center', width: 50, checkbox: true },
+                                        ]],
+                                        //活动列
+                                        columns: [[
+                                            {
+                                                title: '部门名称', field: '001', align: 'center', width: 100, sortable: true,
+                                                formatter: function (value, row, index) {
+
+                                                    return "<div class='peopleList'>部门</div>";
+                                                }
+                                            },
+                                            {
+                                                title: '人员名称', field: 'name', align: 'center', width: 250, sortable: true,
+
+
+                                            }
+                                        ]],
+                                        onLoadSuccess: function (data) {
+                                            //调整 按钮div与datagrid之间的3px间距
+                                            $('#j_contentButton').css('height', '43px');
+                                            //修改全选按钮
+                                            $(".datagrid-header-check").html("序号");
+                                            $(".datagrid-header-check").parent().prev().html("");
+                                            $(".datagrid-header-check").attr("style", "width:79px !important;font-weight: 700;height: 40px; line-height: 40px;font-size: 15px;")
+
+                                        },
+                                        onSelect: function (index, row) {
+                                            selectRow = row;
+                                        }
+
+                                    });
+
+
+                                })
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer  底部区域   -->
+    <div class="footer">
+        <div class="submit">
+            <!--  提交 按钮 -->
+            <a class="submit-btn" onclick="window.print()">
+                流程转交
+            </a>
+        </div>
+    </div>
+</body>
+</html>
