@@ -72,14 +72,10 @@
     })
     //电子签名
     $("#j_seal").on("click", function () {
-        eWebOffice1.InsertPicture("https://images.cnblogs.com/cnblogs_com/yanbigfeg/1248170/o_a1.png", 3);
+       // eWebOffice1.InsertPicture("https://images.cnblogs.com/cnblogs_com/yanbigfeg/1248170/o_a1.png", 3);
     })
 
     //
 
-})
-$("#eWebOffice1").on("DocumentAfterOpen", function () {
-
-    alert("OnDocumentAfterOpen")
 })
 

@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Class1.cs" />
     <Compile Include="Controllers\StyleTemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,8 @@
     <Content Include="Content\js\eWebOffice.js" />
     <Content Include="Content\js\eWebOfficeActiveX.CAB" />
     <Content Include="Content\js\eWebOfficeActiveXInstall.exe" />
+    <Content Include="Content\js\IE8.js" />
+    <Content Include="Content\js\IE9.js" />
     <Content Include="Content\js\lib\jquery-easyui\1.4.4\jquery.easyui.min.js" />
     <Content Include="Content\js\lib\jquery-easyui\1.4.4\jquery.easyui.plus.js" />
     <Content Include="Content\js\lib\jquery-easyui\1.4.4\locale\easyui-lang-en-US.js" />

@@ -123,7 +123,6 @@ var eWebOfficeJS = (function () {
 
     //以上内容都是安装操作
     return {
-
         //参数分别为：控件ID、宽度、高度
         Create: function (s_ID, s_Width, s_Height) {
             var s_Html = '';
