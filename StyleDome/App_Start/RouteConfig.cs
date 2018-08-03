@@ -16,7 +16,7 @@ namespace StyleDome
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "StyleTemplate", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "PDFShow", action = "PDFObjectView", id = UrlParameter.Optional }
             );
         }
     }
