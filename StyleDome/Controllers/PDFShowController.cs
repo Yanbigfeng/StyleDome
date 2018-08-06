@@ -16,8 +16,16 @@ namespace StyleDome.Controllers
         }
         #endregion
 
-        #region 使用pdfobject.js插件实现
+        #region 分页版
         public ActionResult PDFObjectView()
+        {
+            return View();
+        }
+
+
+        #endregion
+        #region 不分页版
+        public ActionResult PDFObjectView2()
         {
             return View();
         }
